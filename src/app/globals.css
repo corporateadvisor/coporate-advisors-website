@@ -1,0 +1,350 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Trebuchet MS", sans-serif;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  
+  /* Standard property (future compatibility) */
+  display: box;
+  line-clamp: 2;
+  box-orient: vertical;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  
+  /* Standard property (future compatibility) */
+  display: box;
+  line-clamp: 3;
+  box-orient: vertical;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  
+  display: box;
+  line-clamp: 4;
+  box-orient: vertical;
+}
+.line-clamp-1 {
+  /* Webkit (Chrome, Safari, Edge, Opera) */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  
+  /* Standard property (future compatibility) */
+  display: -moz-box;
+  display: box;
+  line-clamp: 1;
+  box-orient: vertical;
+  
+  /* Essential for clamping to work */
+  overflow: hidden;
+}
+
+/* Line Clamp 2 */
+.line-clamp-2 {
+  /* Webkit (Chrome, Safari, Edge, Opera) */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  
+  /* Standard property (future compatibility) */
+  display: -moz-box;
+  display: box;
+  line-clamp: 2;
+  box-orient: vertical;
+  
+  overflow: hidden;
+}
+
+/* Line Clamp 3 */
+.line-clamp-3 {
+  /* Webkit (Chrome, Safari, Edge, Opera) */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  
+  /* Standard property (future compatibility) */
+  display: -moz-box;
+  display: box;
+  line-clamp: 3;
+  box-orient: vertical;
+  
+  overflow: hidden;
+}
+
+/* Line Clamp 4 */
+.line-clamp-4 {
+  /* Webkit (Chrome, Safari, Edge, Opera) */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  
+  /* Standard property (future compatibility) */
+  display: -moz-box;
+  display: box;
+  line-clamp: 4;
+  box-orient: vertical;
+  
+  overflow: hidden;
+}
+
+/* Line Clamp 5 */
+.line-clamp-5 {
+  /* Webkit (Chrome, Safari, Edge, Opera) */
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  
+  /* Standard property (future compatibility) */
+  display: -moz-box;
+  display: box;
+  line-clamp: 5;
+  box-orient: vertical;
+  
+  overflow: hidden;
+}
+
+/* Line Clamp None - reset to normal display */
+.line-clamp-none {
+  display: block;
+  -webkit-line-clamp: none;
+  line-clamp: none;
+  overflow: visible;
+}
+
+/* 
+ * Browser Support Fallbacks
+ * For browsers that don't support line-clamp (Firefox < 68, IE, etc.)
+ */
+@supports not ((-webkit-line-clamp: 1) or (line-clamp: 1)) {
+  .line-clamp-1 {
+    max-height: 1.5em;
+    line-height: 1.5em;
+  }
+  
+  .line-clamp-2 {
+    max-height: 3em;
+    line-height: 1.5em;
+  }
+  
+  .line-clamp-3 {
+    max-height: 4.5em;
+    line-height: 1.5em;
+  }
+  
+  .line-clamp-4 {
+    max-height: 6em;
+    line-height: 1.5em;
+  }
+  
+  .line-clamp-5 {
+    max-height: 7.5em;
+    line-height: 1.5em;
+  }
+  
+  /* Add ellipsis for fallback browsers */
+  .line-clamp-1,
+  .line-clamp-2,
+  .line-clamp-3,
+  .line-clamp-4,
+  .line-clamp-5 {
+    position: relative;
+  }
+  
+  .line-clamp-1::after,
+  .line-clamp-2::after,
+  .line-clamp-3::after,
+  .line-clamp-4::after,
+  .line-clamp-5::after {
+    content: '...';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, transparent, white 20%);
+    padding-left: 1em;
+  }
+}
+
+/* 
+ * Enhanced fallback for specific use cases
+ * This provides better visual appearance for cards
+ */
+.line-clamp-fallback {
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Prose styles for the detail page */
+.prose {
+  color: inherit;
+}
+
+.prose p {
+  margin-bottom: 1em;
+}
+
+.prose-lg {
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+/* Responsive image styles */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Utility classes for common text line heights */
+.leading-normal {
+  line-height: 1.5;
+}
+
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+.leading-loose {
+  line-height: 2;
+}
