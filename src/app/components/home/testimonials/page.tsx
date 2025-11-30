@@ -16,29 +16,29 @@ export default function Page() {
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      name: "Full Name",
-      position: "Position",
+      name: "Mr.C.G. Jayasuriya",
+      position: "Former President - American Chamber of Commerce in Sri Lanka",
       quote:
-        "The expert business advice we received significantly strengthened our financial foundation, allowing us to make smarter decisions and drive sustainable growth.",
-      image: "/home/Female 1.png?height=80&width=80",
+        "Outstanding Service, Combined With A Caring, Personal, Common Sense Approach. Deep Understanding And Extensive Knowledge Of The Subject.",
+      image: "/home/Mr.C.G.-Jayasuriya.jpg?height=80&width=80",
       accentColor: "#379777",
     },
     {
       id: 2,
-      name: "Full Name",
-      position: "Position",
+      name: "Mr.Shamal Boyagoda",
+      position: "Director Business - MAS Intimates (Private) Limited",
       quote:
-        "The expert business advice we received significantly strengthened our financial foundation, allowing us to make smarter decisions and drive sustainable growth.",
-      image: "/home/Female 2.png?height=80&width=80",
+        "Highly Recommended For Personal Income Tax Management, Reliable, On Time With Details Reachable 24/7,Clear Communication, Brilliant Customer Service Best Service For Your Long Term Business And Personal Needs",
+      image: "/home/Mr.Shamal-Boyagoda.jpg?height=80&width=80",
       accentColor: "#379777",
     },
     {
       id: 3,
-      name: "Full Name",
-      position: "Position",
+      name: "Mr.Raveendra Herath",
+      position: "Director – C.E.F. Logistics (Private) Limited",
       quote:
-        "The expert business advice we received significantly strengthened our financial foundation, allowing us to make smarter decisions and drive sustainable growth.",
-      image: "/home/Male 1.png?height=80&width=80",
+        "Hi everyone, I'm extremely delighted to recommend YES Corporate and they are super professionals in handling their services and I can highly recommend their very professional and very friendly service to everyone…",
+      image: "/home/Mr.Raveendra-Herath.jpg?height=80&width=80",
       accentColor: "#379777",
     },
   ]
@@ -80,26 +80,37 @@ export default function Page() {
               style={{ borderColor: testimonial.accentColor }}
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="relative w-16 h-16 rounded-full overflow-hidden">
+                <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 flex-shrink-0" 
+                     style={{ borderColor: testimonial.accentColor }}>
                   <Image
                     src={testimonial.image || "/placeholder.svg"}
                     alt={testimonial.name}
-                    width={64}
-                    height={64}
-                    className="object-cover"
+                    width={80}
+                    height={80}
+                    className="object-cover w-full h-full"
                   />
                 </div>
                 <div>
                   <h3 className="font-bold text-xl text-[#231f20]">{testimonial.name}</h3>
-                  <p className="text-[#575757]">{testimonial.position}</p>
+                  <p className="text-[#575757] text-sm">{testimonial.position}</p>
                 </div>
               </div>
-              <p className="text-[#575757] mb-8">{testimonial.quote}</p>
-              <div
-                className="absolute bottom-6 right-8 text-6xl"
-                style={{ color: testimonial.accentColor }}
-              >
-                &#8220;&#8221;
+              <div className="relative">
+                <span 
+                  className="absolute -top-4 -left-2 text-3xl font-serif"
+                  style={{ color: testimonial.accentColor }}
+                >
+                  &ldquo;
+                </span>
+                <p className="text-[#575757] mb-8 pl-4 pr-4">
+                  {testimonial.quote}
+                </p>
+                <span 
+                  className="absolute -bottom-4 right-0 text-3xl font-serif"
+                  style={{ color: testimonial.accentColor }}
+                >
+                  &rdquo;
+                </span>
               </div>
             </div>
           ))}

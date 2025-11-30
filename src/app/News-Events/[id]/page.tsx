@@ -2,10 +2,24 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 import { db } from "../../firebase";
-import { doc, getDoc, collection, getDocs, query, where, orderBy } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+} from "firebase/firestore";
 import Link from "next/link";
-import { FiDownload, FiCalendar, FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import {
+  FiDownload,
+  FiCalendar,
+  FiArrowLeft,
+  FiArrowRight,
+} from "react-icons/fi";
 
 type NewsEvent = {
   id: string;
@@ -28,7 +42,7 @@ export default function NewsEventDetailPage() {
     const fetchNewsEvent = async () => {
       try {
         const idFromUrl = params.id as string;
-        
+
         if (!idFromUrl) {
           setError("Invalid news event ID");
           setLoading(false);
@@ -37,23 +51,26 @@ export default function NewsEventDetailPage() {
 
         const docRef = doc(db, "uploads", idFromUrl);
         const docSnap = await getDoc(docRef);
-        
+
         if (docSnap.exists()) {
           const eventData = {
             id: docSnap.id,
-            ...docSnap.data()
+            ...docSnap.data(),
           } as NewsEvent;
           setNewsEvent(eventData);
           fetchRelatedEvents(eventData.id);
         } else {
-          const q = query(collection(db, "uploads"), where("id", "==", idFromUrl));
+          const q = query(
+            collection(db, "uploads"),
+            where("id", "==", idFromUrl)
+          );
           const querySnapshot = await getDocs(q);
-          
+
           if (!querySnapshot.empty) {
             const doc = querySnapshot.docs[0];
             const eventData = {
               id: doc.id,
-              ...doc.data()
+              ...doc.data(),
             } as NewsEvent;
             setNewsEvent(eventData);
             fetchRelatedEvents(doc.id);
@@ -76,16 +93,16 @@ export default function NewsEventDetailPage() {
           orderBy("createdAt", "desc") // Sort by newest first
         );
         const querySnapshot = await getDocs(q);
-        const allEvents = querySnapshot.docs.map(doc => ({
+        const allEvents = querySnapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         })) as NewsEvent[];
-        
+
         // Filter out current event and get the 3 newest events
         const filteredEvents = allEvents
-          .filter(event => event.id !== currentEventId)
+          .filter((event) => event.id !== currentEventId)
           .slice(0, 3);
-        
+
         setRelatedEvents(filteredEvents);
       } catch (err) {
         console.error("Error fetching related events:", err);
@@ -93,22 +110,22 @@ export default function NewsEventDetailPage() {
         try {
           const q = query(collection(db, "uploads"));
           const querySnapshot = await getDocs(q);
-          const allEvents = querySnapshot.docs.map(doc => ({
+          const allEvents = querySnapshot.docs.map((doc) => ({
             id: doc.id,
-            ...doc.data()
+            ...doc.data(),
           })) as NewsEvent[];
-          
+
           // Sort by createdAt if available, otherwise use document ID as fallback
           const sortedEvents = allEvents.sort((a, b) => {
             const dateA = getTimestampValue(a.createdAt);
             const dateB = getTimestampValue(b.createdAt);
             return dateB - dateA; // Descending order (newest first)
           });
-          
+
           const filteredEvents = sortedEvents
-            .filter(event => event.id !== currentEventId)
+            .filter((event) => event.id !== currentEventId)
             .slice(0, 3);
-          
+
           setRelatedEvents(filteredEvents);
         } catch (fallbackErr) {
           console.error("Error in fallback fetching:", fallbackErr);
@@ -133,7 +150,10 @@ export default function NewsEventDetailPage() {
       } else if (timestamp instanceof Date) {
         // JavaScript Date object
         return timestamp.getTime();
-      } else if (typeof timestamp === "string" || typeof timestamp === "number") {
+      } else if (
+        typeof timestamp === "string" ||
+        typeof timestamp === "number"
+      ) {
         // String or number timestamp
         return new Date(timestamp).getTime();
       }
@@ -220,12 +240,14 @@ export default function NewsEventDetailPage() {
 
         {/* Image Section */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
-          <div className="w-full h-64 bg-gray-200">
+          <div className="w-full h-64 bg-gray-200 relative">
             {newsEvent.imageUrl ? (
-              <img
+              <Image
                 src={newsEvent.imageUrl}
                 alt={newsEvent.title}
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-500">
@@ -238,7 +260,6 @@ export default function NewsEventDetailPage() {
         {/* Content Section */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
           <div className="p-6 sm:p-8">
-            
             {/* Date Information */}
             <div className="mb-4">
               <div className="flex items-center text-gray-500">
@@ -257,7 +278,8 @@ export default function NewsEventDetailPage() {
             {/* Description with justified text */}
             <div className="mb-8">
               <div className="text-gray-700 leading-relaxed text-base text-justify">
-                {newsEvent.description || "No description available for this news event."}
+                {newsEvent.description ||
+                  "No description available for this news event."}
               </div>
             </div>
 
@@ -282,19 +304,28 @@ export default function NewsEventDetailPage() {
         {relatedEvents.length > 0 && (
           <div className="w-full bg-white rounded-xl shadow-lg p-6 mb-8">
             <div className="mb-4">
-              <h2 className="text-xl font-bold text-gray-900">More News & Events</h2>
-              <p className="text-gray-600 text-sm mt-1">Latest updates and announcements</p>
+              <h2 className="text-xl font-bold text-gray-900">
+                More News & Events
+              </h2>
+              <p className="text-gray-600 text-sm mt-1">
+                Latest updates and announcements
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {relatedEvents.map((event) => (
-                <div key={event.id} className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                <div
+                  key={event.id}
+                  className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
+                >
                   <div className="h-32 bg-gray-200">
                     {event.imageUrl ? (
-                      <img
+                      <Image
                         src={event.imageUrl}
                         alt={event.title}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm">

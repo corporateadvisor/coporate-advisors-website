@@ -21,8 +21,8 @@ export default function TeamSection() {
       name: "Ms. Samadhi Bandara – Legal Consultant",
       img: "/About/Group2.png",
       description: [
-        "Ms. Samadhi Bandara is a distinguished corporate and commercial law expert with a strong background in ICT law, intellectual property, and dispute resolution. She is also a published legal researcher, contributing to major legal journals and corporate sector publications.",
-        "She has played a key role in Sri Lanka`s law-making processes, serving as the Convener of the Advisory Committee to Review the Process of Service of Summons and the Writ of Execution under the Ministry of Justice. Her expertise extends to Banking & Corporate Law, E-commerce & Digital Law, Litigation & Arbitration.",
+        "Ms. Bandara is a distinguished legal professional with extensive expertise in corporate, civil, and commercial law. Her published work in leading legal journals demonstrates her strong academic foundation, while her practice spans advisory roles for the banking, financial, and corporate sectors, alongside an active private bar practice. She regularly represents clients in complex civil and commercial disputes, including arbitration.",
+        "She has also contributed to the development of Sri Lanka`s legal framework through her work as a member and researcher on Advisory Committees under the Ministry of Justice. Recognized for her ability to combine academic insight with practical legal strategy, Ms. Bandara is widely regarded as a trusted advisor and a key contributor to Sri Lanka`s evolving legal landscape.",
       ],
     },
   ];
