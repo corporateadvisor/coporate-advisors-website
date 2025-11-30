@@ -238,16 +238,17 @@ export default function NewsEventDetailPage() {
           </Link>
         </div>
 
-        {/* Image Section */}
+        {/* Image Section - FIXED HEIGHT */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
-          <div className="w-full h-64 bg-gray-200 relative">
+          <div className="w-full h-64 sm:h-80 md:h-96 bg-gray-200 relative">
             {newsEvent.imageUrl ? (
               <Image
                 src={newsEvent.imageUrl}
                 alt={newsEvent.title}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                priority
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-500">
@@ -318,14 +319,14 @@ export default function NewsEventDetailPage() {
                   key={event.id}
                   className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
                 >
-                  <div className="h-32 bg-gray-200">
+                  <div className="h-32 bg-gray-200 relative">
                     {event.imageUrl ? (
                       <Image
                         src={event.imageUrl}
                         alt={event.title}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 30vw"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm">
